@@ -1,5 +1,6 @@
 package com.example.kiemtra_laptrinhungdungdidong_2374802010028
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Patterns
@@ -21,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val tvStatus = findViewById<TextView>(R.id.tvStatus)
 
-        // 1.4. Xử lý sự kiện click vào Button 'Đăng nhập'
+        // 1.4 & 2.3 & 2.4. Xử lý sự kiện click vào Button 'Đăng nhập'
         btnLogin.setOnClickListener {
             val email = edtEmail.text.toString().trim()
             val password = edtPassword.text.toString().trim()
@@ -50,6 +51,11 @@ class LoginActivity : AppCompatActivity() {
                 else -> {
                     tvStatus.setTextColor(Color.parseColor("#2E7D32"))
                     tvStatus.text = "Xác thực thành công!"
+
+                    // 2.3 & 2.4. Khởi tạo Explicit Intent và truyền dữ liệu Email qua putExtra()
+                    val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
+                    intent.putExtra("EXTRA_EMAIL", email)
+                    startActivity(intent)
                 }
             }
         }
